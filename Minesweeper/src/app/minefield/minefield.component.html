@@ -1,0 +1,12 @@
+<label for="width">Width</label>
+<input type="number" #width placeholder=0/>
+<label for="height">Height</label>
+<input type="number" #height placeholder=0/>
+<label for="mines">Mines</label>
+<input type="number" #mines placeholder=0/>
+<button (click)="generate(width.value, height.value, mines.value)">generate</button>
+<div *ngFor="let tileRow of tiles">
+    <button *ngFor="let tile of tileRow">
+        {{tile}}
+    </button>
+</div>
