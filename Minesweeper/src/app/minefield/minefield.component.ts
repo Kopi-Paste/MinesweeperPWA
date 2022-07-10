@@ -9,22 +9,60 @@ import { TileComponent } from '../tile/tile.component';
 export class MinefieldComponent implements OnInit {
 
 
-  tiles: Array<Array<string>>;
+  width: number;
+  height: number;
+  mines: number;
+
+
+  minesMap: Array<Array<boolean>>;
+  minesAround: Array<Array<number>>;
 
 
   constructor() { 
-    this.tiles = new Array<Array<string>>();
+    this.width = 0;
+    this.height = 0;
+    this.mines = 0;
 
+
+    this.minesMap = new Array<Array<boolean>>();
+    this.minesAround = new Array<Array<number>>();
+  }
+
+  static generateRandomNumber(min : number, max : number) : number
+  {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
+  placeMines() : void
+  {
+      this.minesMap = new Array<Array<boolean>>(this.height);
+      for (let i = 0; i < this.height; ++i)
+        this.minesMap[i] = new Array<boolean>(this.width).fill(false);
+
+      let remainingTiles = this.width * this.height;
+      let remainingMines = this.mines;
+
+      for (let i = 0; i < this.height; ++i)
+      {
+        for (let j = 0; j < this.width; ++j)
+        {
+            if(MinefieldComponent.generateRandomNumber(0, remainingTiles--) < remainingMines)
+            {
+              --remainingMines;
+              this.minesMap[i][j] = true;
+            }
+        }
+      }
   }
 
   generate(widthStr : string, heightStr : string, minesStr : string) : void
   {
-      let width = parseInt(widthStr);
-      let height = parseInt(heightStr);
-      let mines = parseInt(minesStr);
+      this.width = parseInt(widthStr);
+      this.height = parseInt(heightStr);
+      this.mines = parseInt(minesStr);
 
-      this.tiles = new Array<Array<string>>(height);
-      this.tiles.fill(new Array<string>(width).fill("&"));
+
+      this.placeMines();
   }
 
   ngOnInit(): void {

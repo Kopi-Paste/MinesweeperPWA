@@ -7,11 +7,13 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class TileComponent implements OnInit {
 
-  // @Input() minesAround : number;
+  @Input() mine : boolean
 
   @Output() messageEvent = new EventEmitter<string>();
 
-  constructor() { }
+  constructor() {
+    this.mine = false;
+   }
 
   sendMessage()
   {
