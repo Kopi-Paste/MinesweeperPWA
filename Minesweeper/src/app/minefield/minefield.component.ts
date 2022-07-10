@@ -13,6 +13,11 @@ export class MinefieldComponent implements OnInit {
   height: number;
   mines: number;
 
+  gameActive: boolean;
+  gameInteractive: boolean;
+
+  startTime: Date;
+
   uncoveredTiles: number;
   flaggedTiles: number;
 
@@ -25,6 +30,11 @@ export class MinefieldComponent implements OnInit {
     this.width = 0;
     this.height = 0;
     this.mines = 0;
+
+    this.gameActive = false;
+    this.gameInteractive = true;
+
+    this.startTime = new Date();
 
     this.uncoveredTiles = 0;
     this.flaggedTiles = 0;
@@ -101,9 +111,14 @@ export class MinefieldComponent implements OnInit {
       this.height = parseInt(heightStr);
       this.mines = parseInt(minesStr);
 
+      this.gameActive = true;
+      this.gameInteractive = true;
 
       this.placeMines();
       this.countMines();
+
+      this.uncoveredTiles = 0;
+      this.flaggedTiles = 0;
 
       this.flagsMap = new Array<Array<number>>(this.height);
       for (let i = 0; i < this.height; ++i)
@@ -112,6 +127,8 @@ export class MinefieldComponent implements OnInit {
       this.uncoveredMap = new Array<Array<boolean>>(this.height);
       for (let i = 0; i < this.height; ++i)
         this.uncoveredMap[i] = new Array<boolean>(this.width).fill(false);
+      
+      this.startTime = new Date();
   }
 
   uncoverDeleteFlag(vertical : number, horizontal : number) : void
@@ -147,6 +164,12 @@ export class MinefieldComponent implements OnInit {
       this.uncoverDeleteFlag(vertical + 1, horizontal + 1);
   }
 
+  gameWon() : void
+  {
+    this.gameInteractive = false;
+    alert("Congratulations! You have swept the mines. Your time: " + (new Date().valueOf() - this.startTime.valueOf()) / 1000 + " seconds");
+  }
+
   handleUncover(coordinates: string) : void
   {
       let coordinatesArr = coordinates.split(" ");
@@ -156,6 +179,8 @@ export class MinefieldComponent implements OnInit {
       this.uncoveredTiles += 1;
       if (this.minesAround[vertical][horizontal] == 0)
         this.uncoverAround(vertical, horizontal);
+      if (this.uncoveredTiles == this.width * this.height - this.mines)
+        this.gameWon();
   }
 
   handleFlag(coordinates: string) : void
@@ -168,6 +193,12 @@ export class MinefieldComponent implements OnInit {
         this.flaggedTiles += 1;
       if (this.flagsMap[vertical][horizontal] == 2)
         this.flaggedTiles -= 1;
+  }
+
+  handleLoss(coordinates: string) : void
+  {
+    this.gameInteractive = false;
+    alert("Mines are victorious!");
   }
 
   ngOnInit(): void {

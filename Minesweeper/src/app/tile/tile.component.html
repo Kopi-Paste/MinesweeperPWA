@@ -1,2 +1,2 @@
-<button (click)="handleLeftClick()" (contextmenu)="handleRightClick($event)" [innerHTML]="display">
+<button [disabled]="!gameInteractive" (click)="handleLeftClick()" (contextmenu)="handleRightClick($event)" [innerHTML]="display">
 </button>

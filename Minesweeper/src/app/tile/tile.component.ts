@@ -8,6 +8,8 @@ import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange
 })
 export class TileComponent implements OnInit, OnChanges {
 
+  @Input() gameInteractive : boolean
+
   @Input() horizontal : number
 
   @Input() vertical : number
@@ -29,6 +31,7 @@ export class TileComponent implements OnInit, OnChanges {
   @Output() lossEvent = new EventEmitter<string>();
 
   constructor() {
+    this.gameInteractive = true;
     this.horizontal = 0;
     this.vertical = 0;
     this.mine = false;
