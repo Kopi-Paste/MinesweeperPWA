@@ -7,6 +7,8 @@
 <button (click)="generate(width.value, height.value, mines.value)">generate</button>
 <div *ngFor="let tileRow of minesMap; let i = index">
     <div style="display: inline;" *ngFor="let tile of tileRow; let j = index">
-        <app-tile [mine]=tile [minesAround]=minesAround[i][j]></app-tile>
+        <app-tile [mine]=tile [minesAround]=minesAround[i][j] [flagState]=flagsMap[i][j] [uncovered]=uncoveredMap[i][j] [vertical]=i [horizontal]=j
+            (uncoverEvent)="handleUncover($event)" (flagEvent)="handleFlag($event)">
+        </app-tile>
     </div>
 </div>
