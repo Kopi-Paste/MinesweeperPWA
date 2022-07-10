@@ -1,1 +1,2 @@
-<button>{{mine ? "*" : minesAround}}</button>
+<button (click)="handleLeftClick()" (contextmenu)="handleRightClick($event)" [innerHTML]="display">
+</button>
