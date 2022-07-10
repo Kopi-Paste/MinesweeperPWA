@@ -5,8 +5,8 @@
 <label for="mines">Mines</label>
 <input type="number" #mines placeholder=0/>
 <button (click)="generate(width.value, height.value, mines.value)">generate</button>
-<div *ngFor="let tileRow of minesMap">
-    <div style="display: inline;" *ngFor="let tile of tileRow">
-        <app-tile [mine]=tile></app-tile>
+<div *ngFor="let tileRow of minesMap; let i = index">
+    <div style="display: inline;" *ngFor="let tile of tileRow; let j = index">
+        <app-tile [mine]=tile [minesAround]=minesAround[i][j]></app-tile>
     </div>
 </div>

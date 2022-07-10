@@ -9,10 +9,13 @@ export class TileComponent implements OnInit {
 
   @Input() mine : boolean
 
+  @Input() minesAround : number
+
   @Output() messageEvent = new EventEmitter<string>();
 
   constructor() {
     this.mine = false;
+    this.minesAround = 0;
    }
 
   sendMessage()

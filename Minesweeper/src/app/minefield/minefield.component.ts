@@ -55,6 +55,39 @@ export class MinefieldComponent implements OnInit {
       }
   }
 
+  countMines() : void
+  {
+    this.minesAround = new Array<Array<number>>(this.height);
+    for (let i = 0; i < this.height; ++i)
+      this.minesAround[i] = new Array<number>(this.width);
+
+    for (let i = 0; i < this.height; ++i)
+    {
+      for (let j = 0; j < this.width; ++j)
+      {
+        let sum = 0;
+        if (i != 0 && j != 0 && this.minesMap[i-1][j-1])
+          sum += 1;
+        if (j != 0 && this.minesMap[i][j-1])
+          sum += 1;
+        if (i != this.height - 1 && j != 0 && this.minesMap[i+1][j-1])
+          sum += 1;
+        if (i != 0 && this.minesMap[i-1][j])
+          sum += 1;
+        if (i != this.height - 1 && this.minesMap[i+1][j])
+          sum += 1;
+        if (i != 0 && j != this.width - 1 && this.minesMap[i-1][j+1])
+          sum += 1;
+        if (j != this.width - 1 && this.minesMap[i][j+1])
+          sum += 1;
+        if (i != this.height - 1 && j != this.width - 1 && this.minesMap[i+1][j+1])
+          sum += 1;
+
+        this.minesAround[i][j] = sum;
+      }
+    }
+  }
+
   generate(widthStr : string, heightStr : string, minesStr : string) : void
   {
       this.width = parseInt(widthStr);
@@ -63,6 +96,7 @@ export class MinefieldComponent implements OnInit {
 
 
       this.placeMines();
+      this.countMines();
   }
 
   ngOnInit(): void {
