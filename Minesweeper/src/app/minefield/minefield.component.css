@@ -168,3 +168,52 @@
 {
     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
+
+.gameInfo
+{
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+    margin: 20px;
+}
+
+.tileLookALike
+{
+    height: 50px;
+    width: 50px;
+    background-color: rgb(0, 206, 17);
+    opacity: 0.9;
+    border-style: solid;
+    border-color: black;
+    border-width: 3px;
+    margin: 20px;
+}
+
+.tilesInfo
+{
+    margin-right: 20px;
+    text-align: center;
+}
+
+.flagInfo
+{
+    margin-left: 20px;
+    text-align: center;
+}
+
+.tilesInfo strong
+{
+    position: relative;
+    color: #af0000;
+    top: 12px;
+}
+
+.flagInfo strong
+{
+    position: relative;
+    color: #af0000;
+    top: -9px;
+    padding-left: 5px;
+}

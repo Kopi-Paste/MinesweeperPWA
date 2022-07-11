@@ -17,15 +17,21 @@
     <button id="gameStartButton" (click)="generate(widthInput.value, heightInput.value, minesInput.value)">{{buttonMessage}}</button>
 </div>
 <div class="gameWrapper" *ngIf="gameActive">
-    <div>
-        {{uncoveredTiles}} / {{width * height - mines}}<br>
-        Mines:{{(mines - flaggedTiles)}}
-    </div>
     <div class="minefieldRow" *ngFor="let tileRow of minesMap; let i = index">
         <div class="minefieldTile" *ngFor="let tile of tileRow; let j = index">
             <app-tile [gameInteractive]="gameInteractive" [mine]=tile [minesAround]=minesAround[i][j] [flagState]=flagsMap[i][j] [uncovered]=uncoveredMap[i][j] [specialHighlight]=specialHighlightMap[i][j] [borders]=bordersMap[i][j] [vertical]=i [horizontal]=j
                 (uncoverEvent)="handleUncover($event)" (flagEvent)="handleFlag($event)" (lossEvent)="handleLoss($event)">
             </app-tile>
+        </div>
+    </div>
+    <div class="gameInfo">
+        <div class="tilesInfo">
+            <button disabled class="tileLookALike"></button>
+            <strong>{{uncoveredTiles}} / {{width * height - mines}}</strong>
+        </div>
+        <div class="flagInfo">
+            <i class='material-icons' style="font-size: 52px; color: red">flag</i>   
+            <strong>{{(mines - flaggedTiles)}}</strong>
         </div>
     </div>
 </div>
