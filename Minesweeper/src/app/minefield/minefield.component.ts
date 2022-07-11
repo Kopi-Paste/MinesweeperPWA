@@ -15,6 +15,7 @@ export class MinefieldComponent implements OnInit {
 
   gameActive: boolean;
   gameInteractive: boolean;
+  buttonMessage: string;
 
   startTime: Date;
 
@@ -35,6 +36,7 @@ export class MinefieldComponent implements OnInit {
 
     this.gameActive = false;
     this.gameInteractive = true;
+    this.buttonMessage = "Play Game";
 
     this.startTime = new Date();
 
@@ -52,6 +54,14 @@ export class MinefieldComponent implements OnInit {
   static generateRandomNumber(min : number, max : number) : number
   {
     return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
+  updateButton() : void
+  {
+    if (this.gameActive)
+      this.buttonMessage = "Play again";
+    if (this.gameInteractive)
+      this.buttonMessage = "Restart";
   }
 
   placeMines() : void
@@ -120,6 +130,8 @@ export class MinefieldComponent implements OnInit {
 
       this.placeMines();
       this.countMines();
+
+      this.updateButton();
 
       this.uncoveredTiles = 0;
       this.flaggedTiles = 0;
@@ -195,6 +207,7 @@ export class MinefieldComponent implements OnInit {
   gameWon() : void
   {
     this.gameInteractive = false;
+    this.updateButton();
     alert("Congratulations! You have swept the mines. Your time: " + (new Date().valueOf() - this.startTime.valueOf()) / 1000 + " seconds");
   }
 
@@ -226,6 +239,7 @@ export class MinefieldComponent implements OnInit {
   handleLoss(coordinates: string) : void
   {
     this.gameInteractive = false;
+    this.updateButton();
     let coordinatesArr = coordinates.split(" ");
     let vertical = parseInt(coordinatesArr[0]);
     let horizontal = parseInt(coordinatesArr[1]);

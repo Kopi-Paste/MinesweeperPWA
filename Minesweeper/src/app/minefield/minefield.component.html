@@ -14,7 +14,7 @@
         <span class="placeholder">Mines</span>
         <span class="border"></span>
     </label>
-    <button (click)="generate(widthInput.value, heightInput.value, minesInput.value)">generate</button>
+    <button id="gameStartButton" (click)="generate(widthInput.value, heightInput.value, minesInput.value)">{{buttonMessage}}</button>
 </div>
 <div class="gameWrapper" *ngIf="gameActive">
     <div>
