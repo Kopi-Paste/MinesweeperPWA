@@ -125,6 +125,24 @@ export class MinefieldComponent implements OnInit {
       this.height = parseInt(heightStr);
       this.mines = parseInt(minesStr);
 
+      if (isNaN(this.width) || this.width <= 0 || this.width > 30)
+      {
+        alert("Width value must be between 1 and 30");
+        return;
+      }
+
+      if (isNaN(this.height) || this.height <= 0 || this.height > 30)
+      {
+        alert("Height value must be between 1 and 30");
+        return;
+      }
+
+      if (isNaN(this.mines) || this.mines <= 0 || this.mines >= this.width * this.height)
+      {
+        alert("Number of mines must be between 1 and " + (this.height * this.width - 1));
+        return;
+      }
+
       this.gameActive = true;
       this.gameInteractive = true;
 
