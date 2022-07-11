@@ -1,10 +1,21 @@
-<label for="widthInput">Width</label>
-<input type="number" #widthInput placeholder=0/>
-<label for="heightInput">Height</label>
-<input type="number" #heightInput placeholder=0/>
-<label for="minesInput">Mines</label>
-<input type="number" #minesInput placeholder=0/>
-<button (click)="generate(widthInput.value, heightInput.value, minesInput.value)">generate</button>
+<div class="inputs">
+    <label class="inputLabel">
+        <input type="text" required #widthInput/>
+        <span class="placeholder">Width</span>
+        <span class="border"></span>
+    </label>
+    <label class="inputLabel">
+        <input type="text" required #heightInput/>
+        <span class="placeholder">Height</span>
+        <span class="border"></span>
+    </label>
+    <label class="inputLabel">
+        <input type="text" required #minesInput/>
+        <span class="placeholder">Mines</span>
+        <span class="border"></span>
+    </label>
+    <button (click)="generate(widthInput.value, heightInput.value, minesInput.value)">generate</button>
+</div>
 <div class="gameWrapper" *ngIf="gameActive">
     <div>
         {{uncoveredTiles}} / {{width * height - mines}}<br>

@@ -7,3 +7,141 @@
 {
     display: inline;
 }
+
+.inputs
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+    font-size: 16px;
+}
+
+*, *::before, *::after
+{
+    box-sizing: border-box;
+}
+
+.inputLabel
+{
+    position: relative;
+    font-size: 14px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.inputLabel input
+{
+    border: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline:none;
+    background: #f2f2f2;
+    padding: 12px;
+    border-radius: 3px;
+    width: 250px;
+    font-size: 14px;
+}
+
+.inputLabel .placeholder
+{
+    position: absolute;
+    left: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+    transition: 
+        top 0.3s ease,
+        font-size 0.3s ease,
+        color 0.3s ease;
+}
+
+.inputLabel input:focus + .placeholder,
+.inputLabel input:valid + .placeholder
+{
+    top: -10px;
+    font-size: 10px;
+    color: #222;
+}
+
+
+.inputLabel .border
+{
+    width: 100%;
+    height: calc(100% - 20px);
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+    border-radius: 3px;
+}
+
+.inputLabel .border::before
+{
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 0;
+    bottom: 0px;
+    border-radius: 3px;
+    border-bottom: 0px solid #222;
+    border-right: 0px solid #222;
+    transition:
+        border-width 0s linear 0.4s,
+        width 0.1s linear 0.3s,
+        height 0.1s linear 0.2s;
+}
+
+.inputLabel .border::after
+{
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    right: 0px;
+    top: -100%;
+    border-radius: 3px;
+    border-top: 0px solid #222;
+    border-left: 0px solid #222;
+    transition:
+        border-width 0s linear 0.2s,
+        width 0.1s linear 0.1s,
+        height 0.1s linear;
+}
+
+.inputLabel input:hover ~ .border:before,
+.inputLabel input:focus ~ .border:before,
+.inputLabel input:valid ~ .border:before
+{
+    width: 100%;
+    height: 200%;
+    left: 0px;
+    bottom: 0px;
+    border-bottom: 2px solid #222;
+    border-right: 2px solid #222;
+    transition: 
+        width 0.1s linear,
+        height 0.1s linear 0.1s;
+}
+
+
+.inputLabel input:hover ~ .border:after,
+.inputLabel input:focus ~ .border:after,
+.inputLabel input:valid ~ .border:after
+{
+    width: 100%;
+    height: 200%;
+    right: 0px;
+    top: -100%;
+    border-top: 2px solid #222;
+    border-left: 2px solid #222;
+    transition:
+        border-width 0s linear 0.2s,
+        width 0.1s linear 0.2s,
+        height 0.1s linear 0.3s;
+}
