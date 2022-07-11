@@ -8,6 +8,8 @@ import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange
 })
 export class TileComponent implements OnInit, OnChanges {
 
+  static flag = "<i class='material-icons'>flag</i>"
+
   @Input() gameInteractive : boolean
 
   @Input() horizontal : number
@@ -21,6 +23,10 @@ export class TileComponent implements OnInit, OnChanges {
   @Input() uncovered : boolean;
 
   @Input() flagState : number;
+
+  @Input() specialHighlight : boolean;
+
+  @Input() borders : number;
 
   display : string;
 
@@ -38,13 +44,20 @@ export class TileComponent implements OnInit, OnChanges {
     this.minesAround = 0;
     this.uncovered = false;
     this.flagState = 0;
+    this.specialHighlight = false;
+    this.borders = 0;
     this.display = " ";
+   }
+
+   checkFlag(flag: number) : boolean
+   {
+      return (this.borders & flag) != 0;
    }
 
    updateDisplay()
    {
       if (this.uncovered)
-        this.display = this.minesAround != 0 ? this.minesAround.toString() : "=";
+        this.display = this.minesAround != 0 ? this.minesAround.toString() : " ";
       else
         switch (this.flagState)
         {
@@ -52,7 +65,7 @@ export class TileComponent implements OnInit, OnChanges {
             this.display = " ";
             break;
           case 1:
-            this.display = "F";
+            this.display = TileComponent.flag;
             break;
           case 2:
             this.display = "?";

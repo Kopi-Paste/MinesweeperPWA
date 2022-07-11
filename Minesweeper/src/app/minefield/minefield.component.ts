@@ -25,6 +25,8 @@ export class MinefieldComponent implements OnInit {
   minesAround: Array<Array<number>>;
   flagsMap: Array<Array<number>>;
   uncoveredMap: Array<Array<boolean>>;
+  specialHighlightMap: Array<Array<boolean>>;
+  bordersMap: Array<Array<number>>
 
   constructor() { 
     this.width = 0;
@@ -43,6 +45,8 @@ export class MinefieldComponent implements OnInit {
     this.minesAround = new Array<Array<number>>();
     this.flagsMap = new Array<Array<number>>();
     this.uncoveredMap = new Array<Array<boolean>>();
+    this.specialHighlightMap = new Array<Array<boolean>>();
+    this.bordersMap = new Array<Array<number>>();
   }
 
   static generateRandomNumber(min : number, max : number) : number
@@ -127,7 +131,31 @@ export class MinefieldComponent implements OnInit {
       this.uncoveredMap = new Array<Array<boolean>>(this.height);
       for (let i = 0; i < this.height; ++i)
         this.uncoveredMap[i] = new Array<boolean>(this.width).fill(false);
-      
+
+      this.specialHighlightMap = new Array<Array<boolean>>(this.height);
+      for (let i = 0; i < this.height; ++i)
+        this.specialHighlightMap[i] = new Array<boolean>(this.width).fill(false);
+
+      this.bordersMap = new Array<Array<number>>(this.height);
+
+      for (let i = 0; i < this.height; ++i)
+      {
+        this.bordersMap[i] = new Array<number>(this.width);
+        for (let j = 0; j < this.width; ++j)
+        {
+          let borders = 0;
+          if (j == 0)
+            borders |= 1;
+          if (i == 0)
+            borders |= 2;
+          if (j == this.width - 1)
+            borders |= 4;
+          if (i == this.height - 1)
+            borders |= 8;
+          this.bordersMap[i][j] = borders;
+        }
+      }
+
       this.startTime = new Date();
   }
 
@@ -198,6 +226,10 @@ export class MinefieldComponent implements OnInit {
   handleLoss(coordinates: string) : void
   {
     this.gameInteractive = false;
+    let coordinatesArr = coordinates.split(" ");
+    let vertical = parseInt(coordinatesArr[0]);
+    let horizontal = parseInt(coordinatesArr[1]);
+    this.specialHighlightMap[vertical][horizontal] = true;
     alert("Mines are victorious!");
   }
 

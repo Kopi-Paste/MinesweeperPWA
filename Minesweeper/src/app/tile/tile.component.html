@@ -1,2 +1,27 @@
-<button [disabled]="!gameInteractive" (click)="handleLeftClick()" (contextmenu)="handleRightClick($event)" [innerHTML]="display">
+<script>
+    $scope.checkFlag(value, flag) = function(value, flag)
+    {
+        return (value & flag) != 0;
+    }
+</script>
+
+<button [disabled]="!gameInteractive" (click)="handleLeftClick()" (contextmenu)="handleRightClick($event)" [innerHTML]="display"
+    [ngClass]="{
+    'uncovered' : uncovered,
+    'flagged' : flagState == 1,
+    'specialHighlight' : specialHighlight,
+    'borderLeft' : checkFlag(1),
+    'borderUp' : checkFlag(2),
+    'borderRight' : checkFlag(4),
+    'borderDown' : checkFlag(8),
+    'mineShown' : !gameInteractive && mine && !specialHighlight,
+    'oneMine' : minesAround == 1 && uncovered,
+    'twoMines' : minesAround == 2 && uncovered,
+    'threeMines' : minesAround == 3 && uncovered,
+    'fourMines' : minesAround == 4 && uncovered,
+    'fiveMines' : minesAround == 5 && uncovered,
+    'sixMines' : minesAround == 6 && uncovered,
+    'sevenMines' : minesAround == 7 && uncovered,
+    'eightMines' : minesAround == 8 && uncovered
+    }">
 </button>

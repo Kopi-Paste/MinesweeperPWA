@@ -1,6 +1,114 @@
 button
 {
     font-size: 20px;
-    height: 40px;
-    width: 40px;
+    height: 50px;
+    width: 50px;
+    background-color: rgb(102, 3, 196);
+    opacity: 0.9;
+    transition: 0.1s;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
+    color: rgb(8, 1, 1);
+    font-family: 'VT323', monospace;
+    font-size: 40px;
+}
+
+button:hover
+{
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+button:disabled:hover
+{
+    opacity: 0.9;
+    transform: scale(1.0);
+}
+
+.borderLeft
+{
+    border-left-width: 3px;
+}
+
+.borderUp
+{
+    border-top-width: 3px;
+}
+
+.borderRight
+{
+    border-right-width: 3px;
+}
+
+.borderDown
+{
+    border-bottom-width: 3px;
+}
+
+.uncovered
+{
+    background-color: rgb(0, 206, 17);
+}
+
+.flagged
+{
+    color: red;
+}
+
+.mineShown
+{
+    opacity: 0.5;
+}
+
+.mineShown:hover
+{
+    opacity: 0.5!important;
+    transform: scale(1.0);
+}
+
+.specialHighlight
+{
+    background-color: red;
+    opacity: 1;
+}
+
+.oneMine
+{
+    color: rgb(39, 1, 250);
+}
+
+.twoMines
+{
+    color: rgb(39, 85, 1);
+}
+
+.threeMines
+{
+    color:rgb(206, 19, 19)
+}
+
+.fourMines
+{
+    color: rgb(105, 0, 167);
+}
+
+.fiveMines
+{
+    color: rgb(71, 3, 3);
+}
+
+.sixMines
+{
+    color: rgb(51, 1, 1);
+}
+
+.sevenMines
+{
+    color: rgb(32, 0, 0);
+}
+
+.eightMines
+{
+    color: rgb(20, 0, 0);
 }
