@@ -192,28 +192,24 @@
 
 .tilesInfo
 {
-    margin-right: 20px;
     text-align: center;
+    display: contents;
 }
 
 .flagInfo
 {
-    margin-left: 20px;
     text-align: center;
+    display: contents;
 }
 
 .tilesInfo strong
 {
-    position: relative;
     color: #af0000;
-    top: 12px;
 }
 
 .flagInfo strong
 {
-    position: relative;
     color: #af0000;
-    top: -9px;
     padding-left: 5px;
 }
 
