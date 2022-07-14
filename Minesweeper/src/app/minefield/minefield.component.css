@@ -45,6 +45,16 @@
     font-size: 14px;
 }
 
+.inputLabel input:hover
+{
+    cursor: pointer;
+}
+
+.inputLabel input:focus
+{
+    cursor: text;
+}
+
 .inputLabel .placeholder
 {
     position: absolute;
@@ -64,6 +74,7 @@
     top: -10px;
     font-size: 10px;
     color: #222;
+    cursor: text;
 }
 
 
@@ -128,6 +139,17 @@
         height 0.1s linear 0.1s;
 }
 
+.inputLabel input:hover ~ .border:before,
+.inputLabel input:valid ~ .border:before
+{
+    cursor: pointer;
+}
+
+.inputLabel input:focus ~ .border:before
+{
+    cursor: text;
+}
+
 
 .inputLabel input:hover ~ .border:after,
 .inputLabel input:focus ~ .border:after,
@@ -143,6 +165,17 @@
         border-width 0s linear 0.2s,
         width 0.1s linear 0.2s,
         height 0.1s linear 0.3s;
+}
+
+.inputLabel input:hover ~ .border:after,
+.inputLabel input:valid ~ .border:after
+{
+    cursor: pointer;
+}
+
+.inputLabel input:focus ~ .border:after
+{
+    cursor: text;
 }
 
 #gameStartButton
